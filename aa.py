@@ -24,3 +24,6 @@ class MyTrain():
 
     def update_th(self, input_vec, labels):
         delta =
+
+
+asd
