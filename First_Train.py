@@ -11,7 +11,7 @@ class MyTrain():
         '''
         return 'weights\t:%s\nbias\t:%f\n' % (self.weight, self.bias)
 
-    def predict(self, input_vec):
+    def predict(self, input_vec):  # 根据输入得到预测值，输入为x，输出为单个的值
         return self.activator([lambda x: x*self.weight+self.bias for x in input_vec])
 
     def train(self, input_vec, labels, iteration, rate):
@@ -20,10 +20,7 @@ class MyTrain():
 
     def __one__it__(self, input_vec, labels, rate):
         for i, j in zip(input_vec, labels):
-            output = predict(i)
+            output = self.predict(i)
 
-    def update_th(self, input_vec, labels):
-        delta =
-
-
-asd
+    def update_th(self, input_vec, label):
+        delta = label-input_vec
