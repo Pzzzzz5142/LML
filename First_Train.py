@@ -21,6 +21,9 @@ class MyTrain():
     def __one__it__(self, input_vec, labels, rate):
         for i, j in zip(input_vec, labels):
             output = self.predict(i)
+            self.update_pra(output, j, rate)
 
-    def update_th(self, input_vec, label):
-        delta = label-input_vec
+    def update_pra(self, pred_val, label, rate):
+        delta = label-pred_val
+        delta *= rate
+        self.weight
