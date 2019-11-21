@@ -1,3 +1,6 @@
+from functools import reduce
+
+
 class MyTrain():
     def __init__(self, input_num, activator):
 
@@ -11,16 +14,20 @@ class MyTrain():
         '''
         return 'weights\t:%s\nbias\t:%f\n' % (self.weight, self.bias)
 
-    def predict(self, input_vec):  # 根据输入得到预测值，输入为x，输出为单个的值
-        return self.activator([lambda x: x*self.weight+self.bias for x in input_vec])
+    def predict(self, input_vec):  # 根据s输入得到预测值，输入为x向量，输出为单个的值
+        return self.activator(reduce(lambda x, y: x+y, [lambda x: x*self.weight+self.bias for x in input_vec]))
 
-    def train(self, input_vec, labels, iteration, rate):
+    def train(self, input_vecs, labels, iteration, rate):  # input_vec是数据集，里面的元素是训练参数向量
         for i in range(iteration):
-            self.__one__it__(input_vec, labels, rate)
+            self.__one__it__(input_vecs, labels, rate)
 
-    def __one__it__(self, input_vec, labels, rate):
-        for i, j in zip(input_vec, labels):
-            output = self.predict(i)
+    def __one__it__(self, input_vecs, labels, rate):
+        for input_vec, j in zip(input_vecs, labels):
+            pd_output = self.predict(input_vec)
+            self.update_par(input_vec, pd_output, j, rate)
 
-    def update_th(self, input_vec, label):
-        delta = label-input_vec
+    def update_par(self, intput_vec, pred_val, label, rate):
+        delta = label-pred_val
+        delta *= rate
+        self.bias += delta
+        self.weight
