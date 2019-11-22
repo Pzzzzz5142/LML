@@ -20,7 +20,7 @@ class Network(object):
                 cnt+=1
                 self.train_one_time(data, label, rate)
                 if cnt % 1000 == 0:
-                    print('爷练完第 %d 次了' % i)
+                    print('爷练完第 %d 次了' % cnt)
             print('爷练完第 %d 次数据集了',i)
 
     def train_one_time(self, data, label, rate):
