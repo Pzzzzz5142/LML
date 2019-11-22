@@ -204,4 +204,3 @@ for pre, lb in zip(ans, t_CrossL.tolist()):
         right += 1
 
 print('Accuracy = %f %%, total = %d ' % (right/tot*100, tot))
-
